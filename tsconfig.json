@@ -1,0 +1,12 @@
+{
+  "extends": "./node_modules/tsconfig-jaid-node/base.json",
+  "include": [
+    "src/**/*",
+    "lib/**/*",
+    "private/agent/**/*",
+    "x/*",
+  ],
+  "compilerOptions": {
+    "jsx": "react"
+  }
+}

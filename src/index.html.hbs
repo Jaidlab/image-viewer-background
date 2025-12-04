@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Viewer</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/the-new-css-reset@1.11.3/css/reset.min.css">
+  <style>
+    {{CSS}}
+  </style>
+</head>
+<body>
+  <input type="radio" name="bg-toggle" id="bg-default" checked>
+  <input type="radio" name="bg-toggle" id="bg-green">
+  <input type="radio" name="bg-toggle" id="bg-white">
+  <input type="radio" name="bg-toggle" id="bg-black">
+  <div id="transparency">
+    <label for="bg-green" class="bg-trigger trigger-green" title="Switch to Green Screen"></label>
+    <label for="bg-white" class="bg-trigger trigger-white" title="Switch to White Screen"></label>
+    <label for="bg-black" class="bg-trigger trigger-black" title="Switch to Black Screen"></label>
+    <label for="bg-default" class="bg-trigger trigger-default" title="Switch to Checker Pattern"></label>
+  </div>
+  <div id="main">
+    <img src="{{imageUrl}}"/>
+  </div>
+</body>
+</html>

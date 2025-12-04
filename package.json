@@ -1,0 +1,17 @@
+{
+  "name": "image-viewer-background",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "printf 'No %s script specified\\n' $npm_lifecycle_event >&2",
+    "build": "bun x/build.ts",
+    "test": "printf 'No %s script specified\\n' $npm_lifecycle_event >&2"
+  },
+  "devDependencies": {
+    "html-minifier-terser": "^7.2.0",
+    "sass": "^1.94.2",
+    "tsconfig-jaid-node": "^9.0.0",
+    "zeug": "^2.1.0"
+  }
+}
