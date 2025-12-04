@@ -1,9 +1,11 @@
+import path from 'path'
+
 import * as sass from "sass"
 import {minify} from "html-minifier-terser"
 import {renderHtmlHandlebars} from "zeug"
 
-const srcDir = new URL("../src/", import.meta.url).pathname.slice(1)
-const outDir = new URL("../out/", import.meta.url).pathname.slice(1)
+const srcDir = path.resolve(import.meta.dir, '..', 'src')
+const outDir = path.resolve(import.meta.dir, '..', 'out')
 
 const htmlTemplate = await Bun.file(`${srcDir}index.html.hbs`).text()
 const sassResult = await sass.compileAsync(`${srcDir}index.sass`, {
