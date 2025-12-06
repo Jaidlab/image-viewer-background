@@ -1,6 +1,5 @@
 import path from 'path'
 
-console.dir({cwd: process.cwd()})
 import * as sass from "sass-embedded"
 import {minify} from "html-minifier-terser"
 import sharp from 'sharp'
@@ -18,7 +17,9 @@ const buildCss = async () => {
 }
 
 const buildImage = async () => {
-  return sharp(path.join(srcDir, 'bun.jxl')).toFile(path.join(outDir, 'bun.avif'))
+  const inputFile = path.join(srcDir, 'bun.jxl')
+  const outputFile = path.join(outDir, 'bun.webp')
+  return sharp(inputFile).avif().toFile(outputFile)
 }
 
 const buildHtml = async () => {
