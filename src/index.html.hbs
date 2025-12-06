@@ -10,18 +10,21 @@
   </style>
 </head>
 <body>
+  <input type="checkbox" id="outline-toggle">
   <input type="radio" name="bg-toggle" id="bg-default" checked>
   <input type="radio" name="bg-toggle" id="bg-green">
   <input type="radio" name="bg-toggle" id="bg-white">
   <input type="radio" name="bg-toggle" id="bg-black">
   <div id="transparency">
-    <label for="bg-green" class="bg-trigger trigger-green" title="click for greenscreen"></label>
-    <label for="bg-white" class="bg-trigger trigger-white" title="click for white"></label>
-    <label for="bg-black" class="bg-trigger trigger-black" title="click for black"></label>
-    <label for="bg-default" class="bg-trigger trigger-default" title="click for checker pattern"></label>
+    <label for="bg-green" class="bg-trigger trigger-green"></label>
+    <label for="bg-white" class="bg-trigger trigger-white"></label>
+    <label for="bg-black" class="bg-trigger trigger-black"></label>
+    <label for="bg-default" class="bg-trigger trigger-default"></label>
   </div>
   <div id="main">
-    <img src="{{imageUrl}}"/>
+    <label for="outline-toggle">
+      <img src="{{imageUrl}}"/>
+    </label>
   </div>
 </body>
 </html>

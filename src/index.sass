@@ -12,7 +12,7 @@ body
   justify-content: center
   align-items: center
   overflow: hidden
-input[name="bg-toggle"]
+input[name="bg-toggle"], #outline-toggle
   display: none
 .bg-trigger
   position: absolute
@@ -47,6 +47,8 @@ input[name="bg-toggle"]
   inset: 0
 #bg-default:checked ~ #transparency:hover
   animation-play-state: running
+#outline-toggle:checked ~ #main img
+  outline: 1px solid red
 @keyframes moveBackground
   0%
     background-position: 0 0, math.div($transparency-pattern-size, 2) 0, math.div($transparency-pattern-size, 2) math.div($transparency-pattern-size, -2), 0 math.div($transparency-pattern-size, 2)
@@ -57,8 +59,11 @@ input[name="bg-toggle"]
   z-index: 10
   pointer-events: none
   display: flex
+  label
+    display: contents
   img
     max-width: 100vw
     max-height: 100vh
     object-fit: contain
     pointer-events: auto
+    cursor: pointer
