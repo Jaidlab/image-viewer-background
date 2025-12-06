@@ -29,7 +29,7 @@ jobs:
           VIPS_VERSION=$(curl -s https://registry.npmjs.org/sharp/latest | jq -r '.config.libvips | split(">=")[1] | ltrimstr(" ")')
           curl -L https://github.com/libvips/libvips/releases/download/v${VIPS_VERSION}/vips-${VIPS_VERSION}.tar.xz | tar -xJf -
           cd vips-${VIPS_VERSION}
-          meson setup build --buildtype=release -Dintrospection=disabled -Dexamples=false -Dmodules=disabled
+          meson setup build --buildtype=release -Dintrospection=disabled -Dexamples=false -Dmodules=disabled -Dc_args=-march=native -Dcpp_args=-march=native
           cd build
           meson compile
           sudo meson install
