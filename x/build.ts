@@ -1,5 +1,6 @@
 import path from 'path'
 
+console.dir({cwd: process.cwd()})
 import * as sass from "sass-embedded"
 import {minify} from "html-minifier-terser"
 import sharp from 'sharp'
