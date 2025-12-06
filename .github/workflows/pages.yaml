@@ -19,18 +19,16 @@ jobs:
         uses: actions/checkout@v6.0.1
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2.0.2
-      # - name: Install apt packages
-      #   uses: awalsh128/cache-apt-pkgs-action@v1.6.0
-      #   with:
-      #     packages: build-essential meson ninja-build pkg-config libglib2.0-dev libexpat1-dev libjxl-dev libheif-dev libwebp-dev libexif-dev libjpeg-dev libpng-dev
-      #     version: 1
-      #     execute_install_scripts: true
+      - name: Install apt packages
+        uses: awalsh128/cache-apt-pkgs-action@v1.6.0
+        with:
+          packages: build-essential meson ninja-build pkg-config libglib2.0-dev libexpat1-dev libjxl-dev libheif-dev libwebp-dev libexif-dev libjpeg-dev libpng-dev
+          version: 1
+          execute_install_scripts: true
       - name: Install dependencies
         run: bun install
       - name: Patch Sharp
         run: |-
-          sudo apt-get update
-          sudo apt-get install -y build-essential meson ninja-build pkg-config libglib2.0-dev libexpat1-dev libjxl-dev libheif-dev libwebp-dev libexif-dev libjpeg-dev libpng-dev
           pushd /tmp
           VIPS_VERSION=$(curl -s https://registry.npmjs.org/sharp/latest | jq -r '.config.libvips | split(">=")[1] | ltrimstr(" ")')
           curl -L https://github.com/libvips/libvips/releases/download/v${VIPS_VERSION}/vips-${VIPS_VERSION}.tar.xz | tar -xJf -
@@ -46,7 +44,6 @@ jobs:
           cd node_modules/sharp
           bun install/build.js
         env:
-          SHARP_IGNORE_GLOBAL_LIBVIPS: '0'
           SHARP_FORCE_GLOBAL_LIBVIPS: '1'
       - name: Build
         run: bun run build
