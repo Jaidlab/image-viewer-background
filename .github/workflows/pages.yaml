@@ -22,7 +22,7 @@ jobs:
       - name: Install apt packages
         uses: awalsh128/cache-apt-pkgs-action@v1.6.0
         with:
-          packages: build-essential meson ninja-build pkg-config libglib2.0-dev libexpat1-dev libjxl-dev libheif-dev libwebp-dev libexif-dev libjpeg-dev
+          packages: build-essential meson ninja-build pkg-config libglib2.0-dev libexpat1-dev libjxl-dev libheif-dev libwebp-dev libexif-dev libjpeg-dev libpng-dev
           version: 1
           execute_install_scripts: true
       - name: Install dependencies
