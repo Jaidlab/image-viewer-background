@@ -28,18 +28,16 @@ jobs:
           pushd /tmp
           VIPS_VERSION=$(curl -s https://registry.npmjs.org/sharp/latest | jq -r '.config.libvips | split(">=")[1] | ltrimstr(" ")')
           curl -L https://github.com/libvips/libvips/releases/download/v${VIPS_VERSION}/vips-${VIPS_VERSION}.tar.xz | tar -xJf -
-          pushd vips-${VIPS_VERSION}
+          cd vips-${VIPS_VERSION}
           meson setup build --buildtype=release -Dintrospection=disabled -Dexamples=false -Dmodules=disabled
-          pushd build
+          cd build
           meson compile
           sudo meson install
           sudo ldconfig
           popd
-          popd
-          popd
           bun add --dev node-gyp @img/sharp-libvips-dev
           export PATH="$PWD/node_modules/.bin:$PATH"
-          pushd node_modules/sharp
+          cd node_modules/sharp
           bun install/build.js
         env:
           SHARP_FORCE_GLOBAL_LIBVIPS: '1'
