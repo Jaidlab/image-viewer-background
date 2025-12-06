@@ -9,8 +9,10 @@
     "test": "printf 'No %s script specified\\n' $npm_lifecycle_event >&2"
   },
   "devDependencies": {
+    "forward-slash-path": "^0.3.0",
     "html-minifier-terser": "^7.2.0",
     "sass": "^1.94.2",
+    "sharp": "^0.34.5",
     "tsconfig-jaid-node": "^9.0.0"
   },
   "dependencies": {
