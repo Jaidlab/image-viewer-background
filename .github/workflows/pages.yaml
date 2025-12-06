@@ -29,6 +29,7 @@ jobs:
       - name: Patch Sharp
         run: |-
           bun add --dev node-gyp @img/sharp-libvips-dev
+          export PATH="./node_modules/.bin:$PATH"
           bun node_modules/sharp/install/build.js
         env:
           SHARP_FORCE_GLOBAL_LIBVIPS: '1'
