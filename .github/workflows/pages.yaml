@@ -38,7 +38,7 @@ jobs:
           sudo meson install
           sudo ldconfig
           popd
-          bun add --dev node-gyp @img/sharp-libvips-dev
+          bun add --dev node-gyp @img/sharp-libvips-dev node-addon-api
           export PATH="$PWD/node_modules/.bin:$PATH"
           cd node_modules/sharp
           bun install/build.js
