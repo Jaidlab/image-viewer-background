@@ -26,7 +26,7 @@ const buildImage = async () => {
 const buildHtml = async () => {
   const inputFile = path.join(srcDir, 'index.html')
   const outputFile = path.join(outDir, 'index.html')
-  const html = await fs.readFile(inputFile)
+  const html = await Bun.file(inputFile).text()
   const minifiedHtml = await minify(html, {
     collapseWhitespace: true,
     removeComments: true,
