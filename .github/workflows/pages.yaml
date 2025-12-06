@@ -24,6 +24,7 @@ jobs:
         with:
           packages: libvips-dev
           version: 1
+          execute_install_scripts: true
       - name: Install dependencies
         run: bun ci
       - name: Patch Sharp
