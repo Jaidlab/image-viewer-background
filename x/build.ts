@@ -19,7 +19,7 @@ const base64 = Buffer.from(imageBuffer).toString("base64")
 const imageUrl = `data:image/webp;base64,${base64}`
 
 const html = renderHtmlHandlebars(htmlTemplate, {
-  CSS: sassResult.css,
+  css: sassResult.css,
   imageUrl,
 })
 
