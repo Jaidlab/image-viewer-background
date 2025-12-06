@@ -1,6 +1,6 @@
 import path from 'path'
 
-import sass from "sass-embedded"
+import * as sass from "sass-embedded"
 import {minify} from "html-minifier-terser"
 import sharp from 'sharp'
 import fs from 'fs-extra'
