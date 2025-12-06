@@ -5,25 +5,29 @@ import {minify} from "html-minifier-terser"
 import sharp from 'sharp'
 import fs from 'fs-extra'
 
-import inputHtml from "src/index.html" with { type: "text" }
-
 const srcDir = path.resolve(import.meta.dir, '..', 'src')
 const outDir = path.resolve(import.meta.dir, '..', 'out', 'page')
 fs.emptyDirSync(outDir)
 
 const buildCss = async () => {
-  const sassResult = sass.compile(path.join(srcDir, 'index.sass'))
-  return Bun.write(path.join(outDir, 'main.css'), sassResult.css)
+  const inputFile = path.join(srcDir, 'index.sass')
+  const outputFile = path.join(outDir, 'main.css')
+  const sassResult = sass.compile(inputFile)
+  return Bun.write(outputFile, sassResult.css)
 }
 
 const buildImage = async () => {
   const inputFile = path.join(srcDir, 'bun.jxl')
   const outputFile = path.join(outDir, 'bun.webp')
+  // WAITINGFOR https://chromium-review.googlesource.com/c/chromium/src/+/7184969 so we can remove the conversion
   return sharp(inputFile).toFile(outputFile)
 }
 
 const buildHtml = async () => {
-  const minifiedHtml = await minify(inputHtml, {
+  const inputFile = path.join(srcDir, 'index.html')
+  const outputFile = path.join(outDir, 'index.html')
+  const html = await fs.readFile(inputFile)
+  const minifiedHtml = await minify(html, {
     collapseWhitespace: true,
     removeComments: true,
     removeRedundantAttributes: true,
@@ -32,7 +36,7 @@ const buildHtml = async () => {
     useShortDoctype: true,
     minifyCSS: true,
   })
-  return Bun.write(path.join(outDir, 'index.html'), minifiedHtml)
+  return Bun.write(outputFile, minifiedHtml)
 }
 
 await Promise.all([
