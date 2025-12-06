@@ -2,28 +2,21 @@ import path from 'path'
 
 import * as sass from "sass"
 import {minify} from "html-minifier-terser"
-import {renderHtmlHandlebars} from "zeug"
 
 const srcDir = path.resolve(import.meta.dir, '..', 'src')
-const outDir = path.resolve(import.meta.dir, '..', 'out')
+const outDir = path.resolve(import.meta.dir, '..', 'out', 'page')
 
-const htmlTemplate = await Bun.file(path.join(srcDir, 'index.html.hbs')).text()
-const sassResult = await sass.compileAsync(path.join(srcDir, 'index.sass'), {
-  style: "compressed",
-})
+const sassResult = sass.compile(path.join(srcDir, 'index.sass'))
+
+await Bun.write(path.join(outDir, 'main.css'), sassResult.css)
 
 const imagePath = path.join(srcDir, 'bun.webp')
 const imageFile = Bun.file(imagePath)
-const imageBuffer = await imageFile.arrayBuffer()
-const base64 = Buffer.from(imageBuffer).toString("base64")
-const imageUrl = `data:image/webp;base64,${base64}`
+await Bun.write(path.join(outDir, 'bun.webp'), imageFile)
 
-const html = renderHtmlHandlebars(htmlTemplate, {
-  css: sassResult.css,
-  imageUrl,
-})
+const htmlTemplate = await Bun.file(path.join(srcDir, 'index.html')).text()
 
-const minifiedHtml = await minify(html, {
+const minifiedHtml = await minify(htmlTemplate, {
   collapseWhitespace: true,
   removeComments: true,
   removeRedundantAttributes: true,
@@ -35,4 +28,4 @@ const minifiedHtml = await minify(html, {
 
 await Bun.write(path.join(outDir, 'index.html'), minifiedHtml)
 
-console.log(`Built to ${path.join(outDir, 'index.html')}`)
+console.log(`Built to ${outDir}`)

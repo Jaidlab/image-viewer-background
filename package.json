@@ -11,7 +11,9 @@
   "devDependencies": {
     "html-minifier-terser": "^7.2.0",
     "sass": "^1.94.2",
-    "tsconfig-jaid-node": "^9.0.0",
-    "zeug": "^2.1.0"
+    "tsconfig-jaid-node": "^9.0.0"
+  },
+  "dependencies": {
+    "the-new-css-reset": "^1.11.3"
   }
 }
