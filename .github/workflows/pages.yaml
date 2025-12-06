@@ -28,7 +28,7 @@ jobs:
         run: bun ci
       - name: Patch Sharp
         run: |-
-          bun add --global node-gyp
+          bun add --no-save --dev node-gyp
           bun node_modules/sharp/install/build.js
         env:
           SHARP_FORCE_GLOBAL_LIBVIPS: '1'
