@@ -27,7 +27,6 @@ jobs:
       - name: Install dependencies
         run: |-
           bun ci
-          bun node_modules/sharp/install/build.js
         env:
           SHARP_IGNORE_GLOBAL_LIBVIPS: '0'
           SHARP_FORCE_GLOBAL_LIBVIPS: '1'
