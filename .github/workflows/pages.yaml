@@ -19,16 +19,17 @@ jobs:
         uses: actions/checkout@v6.0.1
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2.0.2
-      - name: Install dependencies
-        uses: awalsh128/cache-apt-pkgs-action@v1.6.0
-        with:
-          packages: libvips-dev
-          version: 1
-          execute_install_scripts: true
+      # - name: Install dependencies
+      #   uses: awalsh128/cache-apt-pkgs-action@v1.6.0
+      #   with:
+      #     packages: libvips-dev
+      #     version: 1
+      #     execute_install_scripts: true
       - name: Install dependencies
         run: bun ci
       - name: Patch Sharp
         run: |-
+          sudo apt-get install -y libvips-dev
           bun add --dev node-gyp @img/sharp-libvips-dev
           export PATH="$PWD/node_modules/.bin:$PATH"
           pushd node_modules/sharp
