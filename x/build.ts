@@ -17,7 +17,7 @@ const buildCss = async () => {
 }
 
 const buildImage = async () => {
-  return sharp(path.join(srcDir, 'bun.jxl')).avif({effort:9,quality:90}).toFile(path.join(outDir, 'bun.avif'))
+  return sharp(path.join(srcDir, 'bun.jxl')).toFile(path.join(outDir, 'bun.avif'))
 }
 
 const buildHtml = async () => {
