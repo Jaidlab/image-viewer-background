@@ -43,7 +43,7 @@ jobs:
           cd node_modules/sharp
           bun install/build.js
         env:
-          SHARP_FORCE_GLOBAL_LIBVIPS: 1
+          SHARP_FORCE_GLOBAL_LIBVIPS: '1'
       - name: Build
         run: bun run build
       - name: Setup Pages
