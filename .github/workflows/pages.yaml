@@ -23,7 +23,7 @@ jobs:
         uses: awalsh128/cache-apt-pkgs-action@v1.6.0
         with:
           packages: libvips-dev
-          version: 1.0
+          version: 1
       - name: Install dependencies
         run: bun ci
       - name: Patch Sharp
